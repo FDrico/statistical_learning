@@ -45,7 +45,10 @@ RUN sudo Rscript -e "install.packages('readr')"
 RUN sudo Rscript -e "install.packages('tidymodels')"
 RUN sudo Rscript -e "install.packages('caret')"
 RUN sudo Rscript -e "install.packages('ISLR2')"
+RUN sudo Rscript -e "install.packages('data.table')"
+RUN sudo Rscript -e "install.packages('RCurl')"
 
 # Enable kernel on all users.
 RUN R -e "IRkernel::installspec()"
 
+RUN sudo chmod +777 /usr/local/lib/R/site-library
