@@ -21,6 +21,7 @@
     "windowingMode": "defer",
     "codeCellConfig": {
         "autoClosingBrackets": true,
+        "highlightActiveLine": true,
         "lineWrap": false
     },
     "markdownCellConfig": {
