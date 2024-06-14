@@ -1,1 +1,7 @@
 .env
+.ipynb_checkpoints/
+.run.sh.swp
+notebooks/.ipynb_checkpoints/
+notebooks/R-notebooks/.ipynb_checkpoints/
+venv/
+
