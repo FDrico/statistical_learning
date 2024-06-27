@@ -64,6 +64,17 @@ idx = np.ix_([1,3],[0,2,3]) # submatrix from a "mesh" object
 A[np.array([False,True,False,True])] # Sólo muestra 2da y 4ta fila 
 ```
 
+We need to use reshape because we have a 1-dimensional array, (n,)
+And we want to create a 2-dimensional array, (n,1).
+So the first index will be the sample index, for which we would have a list of results for each possible column or predictor. 
+
+-1: This is a placeholder that tells NumPy to calculate the appropriate number of rows automatically based on the length of the array and the other dimension specified.
+
+1: This specifies that the resulting array should have 1 column.
+```
+np.array(Boston['lstat']).reshape(-1,1)[0][0] # We yse
+```
+
 # Pandas
 ```
 Auto.dropna()
@@ -196,6 +207,7 @@ classDiagram
     Transformer <|-- StandardScaler
     Transformer <|-- MinMaxScaler
     Transformer <|-- MaxAbsScaler
+    Transformer <|-- ModelSpec
     class StandardScaler{
         +fit(samples): calculate std and mean
         +transform(samples)
@@ -206,6 +218,11 @@ classDiagram
     }
     class MaxAbsScaler{
         +fit(samples): calculate std and mean
+        +transform(samples)
+    }
+    class ModelSPec{
+        +ILS_model
+        +fit(samples)
         +transform(samples)
     }
 
@@ -347,6 +364,29 @@ results.conf_int(alpha=0.05)
 flowchart LR
      samples -- "OLS(samples,correct_values)" --> model -- "fit()"--> id1["intercept and t-values in results.params"]
 ```
+```
+# fitted values
+results.fittedvalues
+# Residuals
+results.resid
+```
+
+Leverage statistics: from the `hat_matrix_diag` obtained from `get_influence()`.
+```
+infl = results.get_influence()
+infl.hat_matrix_diag
+```
+
+VIF: Variance Inflation Factor
+```
+from statsmodels.stats.outliers_influence import variance_inflation_factor as VIF
+vals = [VIF(X, i)
+        for i in range(1, X.shape[1])]
+vif = pd.DataFrame({'vif':vals},
+                   index=X.columns[1:])
+vif
+```
+
 
 # ILS
 ```
@@ -367,4 +407,30 @@ design = MS(['lstat'])
 design = design.fit(Boston)
 X = design.transform(Boston)
 
+# As it is a transform, we can also call fit_transform.
+X = MS(['lstat', 'age']).fit_transform(Boston)
+```
+
+Interaction terms!
+```
+X = MS(['lstat',
+        'age',
+        ('lstat', 'age')]).fit_transform(Boston)
+```
+Polynomial fits
+```
+X = MS([poly('lstat', degree=2), 'age']).fit_transform(Boston)
+
+```
+
+
+### Goodness of fit
+```
+results.rsquared #R2
+np.sqrt(results.scale) # RSE
+```
+
+Anova
+```
+anova_lm(results1, results3)
 ```
