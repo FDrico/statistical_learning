@@ -271,6 +271,43 @@ r2 = metrics.r2_score(y_train, y_pred) #r-squared metric
 adjusted_r2 = 1 - (1 - r2) * (n - 1) / (n - p - 1) #adjusted r-squared metric
 
 ```
+### Classification
+#### Discriminant Analysis
+```
+from sklearn.discriminant_analysis import \
+     (LinearDiscriminantAnalysis as LDA,
+      QuadraticDiscriminantAnalysis as QDA)
+
+lda.means_, lda.priors_, lda.coeff_
+
+```
+
+##### Decision Boundary
+```
+DecisionBoundaryDisplay.from_estimator(
+        lda,
+        X_train[['Lag1','Lag2']],
+        response_method="predict_proba",
+        plot_method="contour",
+        ax=ax,
+        alpha=1.0,
+        levels=[0.5]
+    )
+``
+
+#### Naive Bayes
+```
+from sklearn.naive_bayes import GaussianNB
+```
+#### Logistic Regression
+```
+from sklearn.linear_model import LogisticRegression
+```
+
+#### KNN Classifier
+```
+from sklearn.neighbors import KNeighborsClassifier
+```
 
 ## transformers
 ```
