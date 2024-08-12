@@ -1,0 +1,331 @@
+<?xml version="1.0"?>
+<minder version="1.16.2" parent-etag="1131516754" etag="4061466589">
+  <theme name="solarized_dark" label="Solarized Dark" index="2"/>
+  <styles>
+    <style level="0" isset="true" branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="-18" connectionfont="Sans 10" connectiontwidth="100" calloutfont="Sans 12" calloutpadding="4" calloutptrwidth="18" calloutptrlength="20"/>
+    <style level="1" isset="true" branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="-18" connectionfont="Sans 10" connectiontwidth="100" calloutfont="Sans 12" calloutpadding="4" calloutptrwidth="18" calloutptrlength="20"/>
+    <style level="2" isset="true" branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="-18" connectionfont="Sans 10" connectiontwidth="100" calloutfont="Sans 12" calloutpadding="4" calloutptrwidth="18" calloutptrlength="20"/>
+    <style level="3" isset="true" branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="-18" connectionfont="Sans 10" connectiontwidth="100" calloutfont="Sans 12" calloutpadding="4" calloutptrwidth="18" calloutptrlength="20"/>
+    <style level="4" isset="true" branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="-18" connectionfont="Sans 10" connectiontwidth="100" calloutfont="Sans 12" calloutpadding="4" calloutptrwidth="18" calloutptrlength="20"/>
+    <style level="5" isset="true" branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="-18" connectionfont="Sans 10" connectiontwidth="100" calloutfont="Sans 12" calloutpadding="4" calloutptrwidth="18" calloutptrlength="20"/>
+    <style level="6" isset="true" branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="-18" connectionfont="Sans 10" connectiontwidth="100" calloutfont="Sans 12" calloutpadding="4" calloutptrwidth="18" calloutptrlength="20"/>
+    <style level="7" isset="true" branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="-18" connectionfont="Sans 10" connectiontwidth="100" calloutfont="Sans 12" calloutpadding="4" calloutptrwidth="18" calloutptrlength="20"/>
+    <style level="8" isset="true" branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="-18" connectionfont="Sans 10" connectiontwidth="100" calloutfont="Sans 12" calloutpadding="4" calloutptrwidth="18" calloutptrlength="20"/>
+    <style level="9" isset="true" branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="-18" connectionfont="Sans 10" connectiontwidth="100" calloutfont="Sans 12" calloutpadding="4" calloutptrwidth="18" calloutptrlength="20"/>
+    <style level="10" isset="true" branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="-18" connectionfont="Sans 10" connectiontwidth="100" calloutfont="Sans 12" calloutpadding="4" calloutptrwidth="18" calloutptrlength="20"/>
+  </styles>
+  <images/>
+  <nodes>
+    <node id="0" posx="660.5" posy="564" width="118" height="41" side="left" fold="false" treesize="1300" summarized="false" layout="Horizontal" group="false">
+      <style branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+      <nodename maxwidth="200">
+        <text data="Linear models"/>
+      </nodename>
+      <nodenote></nodenote>
+      <nodes>
+        <node id="1" posx="895.5" posy="512.5" width="173" height="41" side="right" fold="false" treesize="1197" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" group="false">
+          <style branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+          <nodename maxwidth="200">
+            <text data="Standard linear model"/>
+          </nodename>
+          <nodenote></nodenote>
+          <nodes>
+            <node id="2" posx="1185.5" posy="-65.5" width="277" height="41" side="right" fold="false" treesize="41" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" group="false">
+              <style branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="266" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename maxwidth="267.44866943359375">
+                <text data="Y = b0 + b1 X1 + b2 X2 + &#xB7;&#xB7;&#xB7; + bp Xp + e"/>
+              </nodename>
+              <nodenote></nodenote>
+            </node>
+            <node id="4" posx="1185.5" posy="41" width="159" height="41" side="right" fold="false" treesize="228" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" group="false">
+              <style branchmargin="117" branchradius="25" linktype="squared" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename maxwidth="200">
+                <text data="Least squares fitting"/>
+              </nodename>
+              <nodenote></nodenote>
+              <callout>
+                <text maxwidth="200">
+                  <text data="Low bias"/>
+                </text>
+                <style calloutfont="Sans 12" calloutpadding="4" calloutptrwidth="18" calloutptrlength="20"/>
+              </callout>
+              <nodes>
+                <node id="14" posx="1461.5" posy="27" width="46" height="41" side="right" fold="false" treesize="144" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="n&lt;p"/>
+                  </nodename>
+                  <nodenote></nodenote>
+                  <nodes>
+                    <node id="16" posx="1624.5" posy="-12.5" width="96" height="41" side="right" fold="false" treesize="144" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                      <style branchmargin="117" branchradius="25" linktype="squared" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename maxwidth="200">
+                        <text data="Impossible"/>
+                      </nodename>
+                      <nodenote></nodenote>
+                      <callout>
+                        <text maxwidth="200">
+                          <text data="Infinite solutions, infinite variance"/>
+                        </text>
+                        <style calloutfont="Sans 12" calloutpadding="4" calloutptrwidth="18" calloutptrlength="20"/>
+                      </callout>
+                      <nodes>
+                        <node id="12" posx="1948.5" posy="-24.5" width="207" height="62" side="right" fold="false" treesize="62" color="#d33682" colorroot="true" summarized="false" layout="Horizontal" group="false">
+                          <style branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="squared" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                          <nodename maxwidth="200">
+                            <text data="Feature Selection / Variable selection"/>
+                          </nodename>
+                          <nodenote></nodenote>
+                          <nodes>
+                            <node id="17" posx="2272.5" posy="-14" width="122" height="41" side="right" fold="false" treesize="41" color="#d33682" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                              <style branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="squared" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                              <nodename maxwidth="200">
+                                <text data="Interpretability"/>
+                              </nodename>
+                              <nodenote></nodenote>
+                            </node>
+                          </nodes>
+                        </node>
+                        <node id="13" posx="1948.5" posy="47.5" width="205" height="62" side="right" fold="false" treesize="82" color="#6c71c4" colorroot="true" summarized="false" layout="Horizontal" group="false">
+                          <style branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="squared" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                          <nodename maxwidth="200">
+                            <text data="Constraining / Shrinking of coefficients"/>
+                          </nodename>
+                          <nodenote></nodenote>
+                          <nodes>
+                            <node id="18" posx="2270.5" posy="37.5" width="168" height="41" side="right" fold="false" treesize="41" color="#6c71c4" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                              <style branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="squared" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                              <nodename maxwidth="200">
+                                <text data="Reduction of variance"/>
+                              </nodename>
+                              <nodenote></nodenote>
+                            </node>
+                            <node id="20" posx="2270.5" posy="78.5" width="117" height="41" side="right" fold="false" treesize="41" color="#6c71c4" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                              <style branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="squared" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                              <nodename maxwidth="200">
+                                <text data="Bias increases"/>
+                              </nodename>
+                              <nodenote></nodenote>
+                            </node>
+                          </nodes>
+                        </node>
+                      </nodes>
+                    </node>
+                  </nodes>
+                </node>
+                <node id="15" posx="1461.5" posy="141" width="54" height="41" side="right" fold="false" treesize="84" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="n&gt;&gt;p"/>
+                  </nodename>
+                  <nodenote></nodenote>
+                  <nodes>
+                    <node id="6" posx="1632.5" posy="119.5" width="180" height="84" side="right" fold="false" treesize="84" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" sticker="ok" group="false">
+                      <style branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename maxwidth="200">
+                        <text data="Low variance"/>
+                      </nodename>
+                      <nodenote></nodenote>
+                    </node>
+                  </nodes>
+                </node>
+              </nodes>
+            </node>
+            <node id="21" posx="1185.5" posy="450.5" width="132" height="41" side="right" fold="false" treesize="660" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" group="false">
+              <style branchmargin="117" branchradius="25" linktype="squared" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename maxwidth="200">
+                <text data="Subset Selection"/>
+              </nodename>
+              <nodenote></nodenote>
+              <callout>
+                <text maxwidth="200">
+                  <text data="Selecting a subset of predictors believed to be related to response. Then fit on selected predictors"/>
+                </text>
+                <style calloutfont="Sans 12" calloutpadding="4" calloutptrwidth="18" calloutptrlength="20"/>
+              </callout>
+              <nodes>
+                <node id="27" posx="1513.5" posy="430" width="166" height="41" side="right" fold="false" treesize="619" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="117" branchradius="25" linktype="squared" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Best Subset Selection"/>
+                  </nodename>
+                  <nodenote></nodenote>
+                  <callout>
+                    <text maxwidth="200">
+                      <text data="fit a separate regression for all possible combinations (2^p) of the p predictors. Pick best."/>
+                    </text>
+                    <style calloutfont="Sans 12" calloutpadding="4" calloutptrwidth="18" calloutptrlength="20"/>
+                  </callout>
+                  <nodes>
+                    <node id="29" posx="1843.5" posy="203.5" width="212" height="83" side="right" fold="false" treesize="83" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                      <style branchmargin="117" branchradius="25" linktype="squared" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename maxwidth="200">
+                        <text data="1. Null model: no predictors used. Predicts the sample mean."/>
+                      </nodename>
+                      <nodenote></nodenote>
+                    </node>
+                    <node id="30" posx="1843.5" posy="286.5" width="261" height="84" side="right" fold="false" treesize="140" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" sticker="candle_sticks" group="false">
+                      <style branchmargin="117" branchradius="25" linktype="squared" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename maxwidth="200">
+                        <text data="2. Group all predictors in groups of k=1, 2, ..., p"/>
+                      </nodename>
+                      <nodenote></nodenote>
+                      <callout>
+                        <text maxwidth="200">
+                          <text data="Fit "/>
+                        </text>
+                        <style calloutfont="Sans 12" calloutpadding="4" calloutptrwidth="18" calloutptrlength="20"/>
+                      </callout>
+                      <nodes>
+                        <node id="32" posx="2221.5" posy="315" width="206" height="83" side="right" fold="false" treesize="83" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                          <style branchmargin="117" branchradius="25" linktype="squared" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                          <nodename maxwidth="200">
+                            <text data="For each group of (p,k) models, pick the best (least RSS, highers R^2), M_k"/>
+                          </nodename>
+                          <nodenote></nodenote>
+                        </node>
+                      </nodes>
+                    </node>
+                    <node id="33" posx="1843.5" posy="520.5" width="219" height="83" side="right" fold="false" treesize="396" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                      <style branchmargin="117" branchradius="25" linktype="squared" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename maxwidth="200">
+                        <text data="3. From all M_k (with k the numbers of predictors used), select the best using either"/>
+                      </nodename>
+                      <nodenote></nodenote>
+                      <callout>
+                        <text maxwidth="200">
+                          <text data="Pick between only p+1 models with different k (number of predictors used)"/>
+                        </text>
+                        <style calloutfont="Sans 12" calloutpadding="4" calloutptrwidth="18" calloutptrlength="20"/>
+                      </callout>
+                      <nodes>
+                        <node id="34" posx="2179.5" posy="426.5" width="113" height="41" side="right" fold="false" treesize="41" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                          <style branchmargin="117" branchradius="25" linktype="squared" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                          <nodename maxwidth="200">
+                            <text data="Validation set"/>
+                          </nodename>
+                          <nodenote></nodenote>
+                          <nodes>
+                            <node id="38" posx="2409.5" posy="426.5" width="129" height="41" side="right" fold="false" treesize="41" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                              <style branchmargin="117" branchradius="25" linktype="squared" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                              <nodename maxwidth="200">
+                                <text data="Cross validation"/>
+                              </nodename>
+                              <nodenote></nodenote>
+                            </node>
+                          </nodes>
+                        </node>
+                        <node id="35" posx="2179.5" posy="467.5" width="73" height="41" side="right" fold="false" treesize="41" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                          <style branchmargin="117" branchradius="25" linktype="squared" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                          <nodename maxwidth="200">
+                            <text data="Cp (AIC)"/>
+                          </nodename>
+                          <nodenote></nodenote>
+                        </node>
+                        <node id="36" posx="2179.5" posy="508.5" width="44" height="41" side="right" fold="false" treesize="41" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                          <style branchmargin="117" branchradius="25" linktype="squared" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                          <nodename maxwidth="200">
+                            <text data="BIC"/>
+                          </nodename>
+                          <nodenote></nodenote>
+                        </node>
+                        <node id="37" posx="2179.5" posy="549.5" width="109" height="41" side="right" fold="false" treesize="41" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                          <style branchmargin="117" branchradius="25" linktype="squared" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                          <nodename maxwidth="200">
+                            <text data="Adjusted R^2"/>
+                          </nodename>
+                          <nodenote></nodenote>
+                        </node>
+                        <node id="40" posx="2179.5" posy="590.5" width="184" height="84" side="right" fold="false" treesize="232" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" sticker="high_priority" group="false">
+                          <style branchmargin="117" branchradius="25" linktype="squared" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="126" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                          <nodename maxwidth="96.8516845703125">
+                            <text data="**do not use RSS nor R2**"/>
+                          </nodename>
+                          <nodenote></nodenote>
+                          <callout>
+                            <text maxwidth="200">
+                              <text data="RSS decreases monotonically with amount of predictors. R2 increases with p. Cheating!"/>
+                            </text>
+                            <style calloutfont="Sans 12" calloutpadding="4" calloutptrwidth="18" calloutptrlength="20"/>
+                          </callout>
+                        </node>
+                      </nodes>
+                    </node>
+                  </nodes>
+                </node>
+                <node id="28" posx="1513.5" posy="822.5" width="146" height="41" side="right" fold="false" treesize="41" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="117" branchradius="25" linktype="squared" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Stepwise selection"/>
+                  </nodename>
+                  <nodenote></nodenote>
+                </node>
+              </nodes>
+            </node>
+            <node id="22" posx="1185.5" posy="866" width="201" height="41" side="right" fold="false" treesize="125" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" group="false">
+              <style branchmargin="117" branchradius="25" linktype="squared" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename maxwidth="200">
+                <text data="Shrinkage / Regularization"/>
+              </nodename>
+              <nodenote></nodenote>
+              <callout>
+                <text maxwidth="200">
+                  <text data="Shrink weakest predictors to 0"/>
+                </text>
+                <style calloutfont="Sans 12" calloutpadding="4" calloutptrwidth="18" calloutptrlength="20"/>
+              </callout>
+              <nodes>
+                <node id="25" posx="1518.5" posy="863.5" width="183" height="125" side="right" fold="false" treesize="125" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="117" branchradius="25" linktype="squared" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="199" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="204.7684326171875">
+                    <text data="Fit on all p predictors. **Coefficients then shrunken towards 0** relative to least squares estimates."/>
+                  </nodename>
+                  <nodenote></nodenote>
+                </node>
+              </nodes>
+            </node>
+            <node id="23" posx="1185.5" posy="988.5" width="168" height="41" side="right" fold="false" treesize="143" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" group="false">
+              <style branchmargin="117" branchradius="25" linktype="squared" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename maxwidth="200">
+                <text data="Dimension Reduction"/>
+              </nodename>
+              <nodenote></nodenote>
+              <callout>
+                <text maxwidth="200">
+                  <text data="Projecting p predictos into M-dimensional space, M&lt;p"/>
+                </text>
+                <style calloutfont="Sans 12" calloutpadding="4" calloutptrwidth="18" calloutptrlength="20"/>
+              </callout>
+              <nodes>
+                <node id="26" posx="1520.5" posy="997.5" width="207" height="125" side="right" fold="false" treesize="125" color="#dc322f" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="117" branchradius="25" linktype="squared" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Compute M linear combinations of the predictors, and use those new predictors on the least squares estimation."/>
+                  </nodename>
+                  <nodenote></nodenote>
+                </node>
+              </nodes>
+            </node>
+          </nodes>
+        </node>
+        <node id="3" posx="895.5" posy="1131.5" width="178" height="62" side="right" fold="false" treesize="62" color="#cb4b16" colorroot="false" summarized="false" layout="Horizontal" group="false">
+          <style branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+          <nodename maxwidth="200">
+            <text data="Non-linear but additive model extension"/>
+          </nodename>
+          <nodenote></nodenote>
+        </node>
+        <node id="8" posx="895.5" posy="1193.5" width="20" height="41" side="right" fold="false" treesize="41" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+          <style branchmargin="117" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="2" nodefill="true" nodemargin="5" nodepadding="5" nodefont="Sans 11" nodemarkup="true"/>
+          <nodename maxwidth="200">
+            <text data=""/>
+          </nodename>
+          <nodenote></nodenote>
+        </node>
+      </nodes>
+    </node>
+  </nodes>
+  <groups/>
+  <stickers/>
+  <nodelinks id="0"/>
+</minder>
