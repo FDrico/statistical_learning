@@ -113,6 +113,8 @@ Auto.boxplot('mpg', by='cylinders', ax=ax)
 
 Auto[['mpg', 'weight']].describe()
 
+algun_dataframe.value_counts()
+
 ```
 
 # Data loading
@@ -171,6 +173,8 @@ classDiagram
     Estimator <|-- KNeighborsClassifier
     Estimator <|-- LinearModel
     LinearModel <|-- LinearRegression
+    LinearModel <|-- LogisticRegression
+    LinearModel <|-- PoissonRegression
     Estimator: +fit(samples, correct_values)
     Estimator: +predict(T)
     style Estimator fill:#f9f,stroke:#333,stroke-width:4px
@@ -197,7 +201,20 @@ classDiagram
         +fit(T)
         +predict(T)
     }
-
+    class LogisticRegression{
+        +coeff_
+        +intercept_
+        +init()
+        +fit(T)
+        +predict(T)
+    }
+    class PoissonRegression{
+        +coeff_
+        +intercept_
+        +init()
+        +fit(T)
+        +predict(T)
+    }
     
     Transformer: +fit()
     style Transformer fill:#f9f,stroke:#333,stroke-width:4px
@@ -251,12 +268,54 @@ MSE: `np.mean((regr.predict(diabetes_X_test) - diabetes_y_test)**2)`
 R^2(score): `regr.score(diabetes_X_test, diabetes_y_test`
 
 ## model_selection
+
+### Cross Validation
+#### Train test split: validation set apprroach
 ```
 from sklearn.model_selection import train_test_split
 y_df = iris_df.target
 X_train, X_test, y_train, y_test = train_test_split(X_df, y_df, stratify=y_df, random_state=0)
+# random_state=0 to ensure we get the same result every time.
+
+# After training we get the MSE as
+np.mean((y_valid, valid_pred)^2)
 ```
-### Linear model
+
+#### K-fold approach
+```
+Import sklearn.model_selection.cross_validate
+
+cv_results = cross_validate(hp_model, # it takes the scikitlearn model (fit, predict, score)
+                            X,
+                            Y,
+                            cv=Auto.shape[0], # the amount of CVs=k, in this case LOOCV. This could also ve a KFold(n_splits=10, shuffle=True, random_state=0) object
+                            scoring=scoring, # scoring approach
+                            return_train_score=True)
+
+cv_err = np.mean(cv_results['test_score'])
+```
+This calculates for each iteration the score using a K-fold approach. It means it fits the model for all but one sample (in this case, one because, LOOCV), and calculates a score, and then moves on to repeat the process.
+As a result we get
+- fit_time array
+- score time array
+- test_score array
+
+We calculate the mean of the test score array of the LOOCV, as the test score in this case is simply the one the model has defined, which is MSE. So we want the mean of all MSEs.
+
+```
+validation = ShuffleSplit(n_splits=1,
+                          test_size=196,
+                          random_state=0)
+results = cross_validate(hp_model,
+                         Auto.drop(['mpg'], axis=1),
+                         Auto['mpg'],
+                         cv=validation);
+results['test_score']
+```
+
+### Bootstrap
+
+## Linear model
 ```
 from sklearn import linear_model
 regr = linear_model.LinearRegression()
@@ -293,26 +352,57 @@ DecisionBoundaryDisplay.from_estimator(
         alpha=1.0,
         levels=[0.5]
     )
-``
+```
 
 #### Naive Bayes
 ```
 from sklearn.naive_bayes import GaussianNB
 ```
+This models each feature with a Gaussian distribution.
+
+After fitting, `NB.class_prior_` gives us the prior probability for each class.
+
+```
+NB.theta_
+# 2 rows: 2 classes
+# 2 columns: 2 features:
+# And so the mean of the first gaussian used on the total 
+# f_k(x) = f_k1(x) · f_k2(x)
+
+# same with variance
+NB.var_
+```
+
+
 #### Logistic Regression
 ```
 from sklearn.linear_model import LogisticRegression
+logit = LogisticRegression(C=1e10, solver='liblinear')
+logit.fit(X_train, y_train)
+logit_pred = logit.predict_proba(X_test)
+
+
+```
+If the C value is high enough, it behaves as unregularized regression. Otherwise, it will automatically apply the Ridge regularization.
+We use `predict_proba` and not `predict` like for other estimators.
+
+#### Poisson Regression
+```
+M_pois = sm.GLM(Y, X2, family=sm.families.Poisson()).fit() # using sm.
 ```
 
 #### KNN Classifier
 ```
 from sklearn.neighbors import KNeighborsClassifier
+knn1 = KNeighborsClassifier(n_neighbors=1)
+
 ```
 
 ## transformers
 ```
 from sklearn.preprocessing import StandardScaler
 my_std_scaler = StandardScaler()
+---> scaler = StandardScaler(with_mean=True #substract mean, with_std=True #stddev to 1, copy=True)
 Xt = my_std_scaler.fit(X).transform(X)
 ```
 ```
