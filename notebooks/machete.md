@@ -154,6 +154,102 @@ np.corrcoef(x, y)
 
 
 # sklearn
+
+```mermaid
+classDiagram
+    direction RL
+    
+    class Dataset {
+        <<utility>>
+        +load_iris(), load_digits()
+        +make_classification()
+        +make_regression()
+        +train_test_split()
+    }
+    
+    class Preprocessor {
+        <<transformer>>
+        +StandardScaler()
+        +MinMaxScaler()
+        +OneHotEncoder()
+        +SimpleImputer()
+        +fit_transform()
+    }
+    
+    class Estimator {
+        <<model>>
+        +fit()
+        +predict()
+        +score()
+    }
+    
+    class Classifier {
+        <<estimator>>
+        +predict_proba()
+        +KNeighborsClassifier()
+        +SVC()
+        +DecisionTreeClassifier()
+        +RandomForestClassifier()
+    }
+    
+    class Regressor {
+        <<estimator>>
+        +LinearRegression()
+        +Ridge()
+        +SVR()
+        +RandomForestRegressor()
+    }
+    
+    class Clusterer {
+        <<estimator>>
+        +KMeans()
+        +DBSCAN()
+        +AgglomerativeClustering()
+    }
+    
+    class ModelSelection {
+        <<utility>>
+        +cross_val_score()
+        +GridSearchCV()
+        +RandomizedSearchCV()
+        +learning_curve()
+    }
+    
+    class Metrics {
+        <<utility>>
+        +accuracy_score()
+        +precision_score()
+        +recall_score()
+        +f1_score()
+        +mean_squared_error()
+        +r2_score()
+        +silhouette_score()
+    }
+    
+    class Pipeline {
+        <<utility>>
+        +Pipeline([('pre', scaler), ('clf', model)])
+        +make_pipeline()
+        +fit()
+        +predict()
+    }
+    
+    Dataset --> Preprocessor : Prepare data
+    Preprocessor --> Estimator : Transform features
+    Estimator <|-- Classifier
+    Estimator <|-- Regressor
+    Estimator <|-- Clusterer
+    Estimator --> Metrics : Evaluate performance
+    ModelSelection --> Estimator : Tune and validate
+    Pipeline *-- Preprocessor : Chain steps
+    Pipeline *-- Estimator : Final estimator
+    
+    note for Beginner "Core Workflow:\n1. Load Dataset\n2. Preprocess Features\n3. Choose Estimator\n4. Train Model\n5. Evaluate\n6. Tune Hyperparameters"
+    note for Pipeline "Simplifies workflow:\nscaler = StandardScaler()\nclf = SVC()\npipe = Pipeline([('scale', scaler), ('svm', clf)])\npipe.fit(X_train, y_train)"
+```
+
+
+
 ```mermaid
 classDiagram
     Estimator <|-- SVC
@@ -239,6 +335,84 @@ from sklearn.model_selection import train_test_split
 y_df = iris_df.target
 X_train, X_test, y_train, y_test = train_test_split(X_df, y_df, stratify=y_df, random_state=0)
 ```
+
+- `BaseCrossValidator`: Abstract base for deterministic splitters (e.g., KFold)
+- `BaseShuffleSplit`: Base for randomized splitters (e.g., ShuffleSplit)
+- `BaseSearchCV`: Base for hyperparameter tuners
+
+```mermaid
+classDiagram
+    class BaseCrossValidator {
+        <<abstract>>
+        +split(X, y, groups)
+    }
+    
+    BaseCrossValidator <|-- KFold
+    BaseCrossValidator <|-- StratifiedKFold
+    BaseCrossValidator <|-- TimeSeriesSplit
+    BaseCrossValidator <|-- GroupKFold
+    BaseCrossValidator <|-- LeaveOneOut
+
+    class KFold {
+        +n_splits: 5
+        +Shuffles data
+    }
+    class StratifiedKFold {
+        +Preserves class distribution
+    }
+    class TimeSeriesSplit {
+        +Order-sensitive splitting
+    }
+    class GroupKFold {
+        +Uses group labels
+    }
+    class LeaveOneOut {
+        +Each sample = test set once
+    }
+```
+```mermaid
+classDiagram
+    class BaseShuffleSplit {
+        <<abstract>>
+        +split(X, y, groups)
+    }
+    BaseShuffleSplit <|-- ShuffleSplit
+    BaseShuffleSplit <|-- StratifiedShuffleSplit
+    BaseShuffleSplit <|-- GroupShuffleSplit
+```
+```mermaid
+classDiagram
+    class BaseSearchCV {
+        <<abstract>>
+        +fit(X, y)
+        +predict(X)
+        +best_params_
+        +best_score_
+    }
+    BaseSearchCV <|-- GridSearchCV
+    BaseSearchCV <|-- RandomizedSearchCV
+    ParameterGrid ..> GridSearchCV : Used by
+    ParameterSampler ..> RandomizedSearchCV : Used by
+    
+    class GridSearchCV {
+        +Exhaustive parameter search
+    }
+    class RandomizedSearchCV {
+        +Random parameter sampling
+    }
+```
+```mermaid
+classDiagram
+    class train_test_split {
+        <<function>>
+        +Single train/test split
+    }
+    class cross_val_score {
+        <<function>>
+        +Scores across folds
+    }
+```
+
 ### Linear model
 ```
 from sklearn import linear_model
@@ -252,9 +426,259 @@ mse = metrics.mean_squared_error(y_train, y_pred)
 rmse = np.sqrt(mse)  # rse
 r2 = metrics.r2_score(y_train, y_pred) #r-squared metric
 adjusted_r2 = 1 - (1 - r2) * (n - 1) / (n - p - 1) #adjusted r-squared metric
-
 ```
 
+```mermaid
+classDiagram
+    direction BT
+    
+    class LinearModel {
+        <<abstract>>
+        +coef_
+        +intercept_
+        +fit(X, y)
+        +predict(X)
+    }
+    
+    class RegularizedLinearModel {
+        <<abstract>>
+        +alpha: Regularization strength
+    }
+    
+    class LinearRegression {
+        +OLS (Ordinary Least Squares)
+        +No regularization
+    }
+    
+    class Ridge {
+        +L2 regularization
+        +Good for multicollinearity
+    }
+    
+    class Lasso {
+        +L1 regularization
+        +Feature selection
+    }
+    
+    class ElasticNet {
+        +L1 + L2 regularization
+        +l1_ratio controls mix
+    }
+    
+    class BayesianRidge {
+        +Bayesian approach
+        +Automatic regularization
+    }
+    
+    class HuberRegressor {
+        +Robust to outliers
+        +Combines L2/L1 loss
+    }
+    
+    class SGDRegressor {
+        +Stochastic Gradient Descent
+        +Supports various losses
+    }
+    
+    class GLM {
+        <<abstract>>
+        +Generalized Linear Model
+    }
+    
+    class LogisticRegression {
+        +Classification (binary/multi)
+        +Logit loss
+    }
+    
+    class PoissonRegressor {
+        +Count data regression
+        +Log-link function
+    }
+    
+    class QuantileRegressor {
+        +Models quantiles (e.g., median)
+        +Robust to outliers
+    }
+    
+    class MultiOutputModel {
+        <<abstract>>
+        +Handles multiple targets
+    }
+    
+    LinearModel <|-- LinearRegression
+    LinearModel <|-- RegularizedLinearModel
+    RegularizedLinearModel <|-- Ridge
+    RegularizedLinearModel <|-- Lasso
+    RegularizedLinearModel <|-- ElasticNet
+    LinearModel <|-- BayesianRidge
+    LinearModel <|-- HuberRegressor
+    LinearModel <|-- SGDRegressor
+    LinearModel <|-- GLM
+    GLM <|-- LogisticRegression
+    GLM <|-- PoissonRegressor
+    GLM <|-- GammaRegressor
+    GLM <|-- TweedieRegressor
+    LinearModel <|-- QuantileRegressor
+    LinearModel <|-- MultiOutputModel
+    MultiOutputModel <|-- MultiTaskLasso
+    MultiOutputModel <|-- MultiTaskElasticNet
+    
+    class CVModel {
+        <<abstract>>
+        +Automated hyperparameter tuning
+    }
+    
+    Ridge <|-- RidgeCV
+    Lasso <|-- LassoCV
+    ElasticNet <|-- ElasticNetCV
+    LogisticRegression <|-- LogisticRegressionCV
+    Lars <|-- LarsCV
+    OrthogonalMatchingPursuit <|-- OrthogonalMatchingPursuitCV
+    class RidgeCV {
+        +Cross-validated alpha
+    }
+    class LassoCV {
+        +Cross-validated alpha
+    }
+    class Lars {
+        +Least Angle Regression
+    }
+    class OrthogonalMatchingPursuit {
+        +Greedy sparse approximation
+    }
+```
+
+- Basic linear modeling: LinearRegression
+- Feature selection: Lasso or LassoCV
+- Multicollinearity issues: Ridge or BayesianRidge
+- Classification tasks: LogisticRegression
+- Count data: PoissonRegressor
+- Outlier resistance: HuberRegressor or RANSACRegressor
+- Large datasets: SGDRegressor
+- Multi-output regression: MultiTaskElasticNet
+
+
+## metrics
+
+```mermaid
+classDiagram
+    direction BT
+    
+    class Metric {
+        <<abstract>>
+        +compute(y_true, y_pred)
+    }
+    
+    class ClassificationMetric {
+        <<interface>>
+    }
+    
+    class RegressionMetric {
+        <<interface>>
+    }
+    
+    class ClusteringMetric {
+        <<interface>>
+    }
+    
+    class PairwiseMetric {
+        <<interface>>
+    }
+    
+    Metric <|-- ClassificationMetric
+    Metric <|-- RegressionMetric
+    Metric <|-- ClusteringMetric
+    Metric <|-- PairwiseMetric
+    
+    class AccuracyScore {
+        +binary/multiclass
+        +params: normalize, sample_weight
+    }
+    
+    class PrecisionScore {
+        +params: average, zero_division
+        +micro/macro/weighted
+    }
+    
+    class RecallScore {
+        +params: average, zero_division
+        +related to sensitivity
+    }
+    
+    class F1Score {
+        +harmonic mean(precision, recall)
+        +params: average
+    }
+    
+    class RocAucScore {
+        +params: average, multi_class
+        +ovo/ovr strategies
+    }
+    
+    class ConfusionMatrix {
+        +visualize with ConfusionMatrixDisplay
+        +TP, TN, FP, FN counts
+    }
+    
+    class MeanSquaredError {
+        +params: squared, multioutput
+        +RMSE when squared=False
+    }
+    
+    class R2Score {
+        +coefficient of determination
+        +params: force_finite
+    }
+    
+    class AdjustedRandScore {
+        +clustering comparison
+        +adjusted for chance
+    }
+    
+    class SilhouetteScore {
+        +measures cluster cohesion
+        +range: [-1, 1]
+    }
+    
+    class CosineSimilarity {
+        +text/image applications
+        +params: dense_output
+    }
+    
+    class MakeScorer {
+        +wrapper for custom metrics
+        +params: greater_is_better
+    }
+    
+    ClassificationMetric <|.. AccuracyScore
+    ClassificationMetric <|.. PrecisionScore
+    ClassificationMetric <|.. RecallScore
+    ClassificationMetric <|.. F1Score
+    ClassificationMetric <|.. RocAucScore
+    ClassificationMetric <|.. ConfusionMatrix
+    RegressionMetric <|.. MeanSquaredError
+    RegressionMetric <|.. R2Score
+    ClusteringMetric <|.. AdjustedRandScore
+    ClusteringMetric <|.. SilhouetteScore
+    PairwiseMetric <|.. CosineSimilarity
+    Metric <|.. MakeScorer
+```
+
+```mermaid
+flowchart TD
+    A[Metric Types] --> B[Classification]
+    A --> C[Regression]
+    A --> D[Clustering]
+    A --> E[Pairwise]
+    A --> F[Utilities]
+    
+    B --> G[Accuracy, Precision, Recall, F1]
+    B --> H[ROC AUC, Confusion Matrix]
+    C --> I[MSE, MAE, R²]
+    D --> J[Adjusted Rand, Silhouette]
+    E --> K[Cosine Similarity]
+    F --> L[MakeScorer]
+```
 ## transformers
 ```
 from sklearn.preprocessing import StandardScaler
