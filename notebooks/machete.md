@@ -64,17 +64,6 @@ idx = np.ix_([1,3],[0,2,3]) # submatrix from a "mesh" object
 A[np.array([False,True,False,True])] # Sólo muestra 2da y 4ta fila 
 ```
 
-We need to use reshape because we have a 1-dimensional array, (n,)
-And we want to create a 2-dimensional array, (n,1).
-So the first index will be the sample index, for which we would have a list of results for each possible column or predictor. 
-
--1: This is a placeholder that tells NumPy to calculate the appropriate number of rows automatically based on the length of the array and the other dimension specified.
-
-1: This specifies that the resulting array should have 1 column.
-```
-np.array(Boston['lstat']).reshape(-1,1)[0][0] # We yse
-```
-
 # Pandas
 ```
 Auto.dropna()
@@ -112,8 +101,6 @@ grouped.boxplot(subplots=False, column='mpg')
 Auto.boxplot('mpg', by='cylinders', ax=ax)
 
 Auto[['mpg', 'weight']].describe()
-
-algun_dataframe.value_counts()
 
 ```
 
@@ -167,14 +154,108 @@ np.corrcoef(x, y)
 
 
 # sklearn
+
+```mermaid
+classDiagram
+    direction RL
+    
+    class Dataset {
+        <<utility>>
+        +load_iris(), load_digits()
+        +make_classification()
+        +make_regression()
+        +train_test_split()
+    }
+    
+    class Preprocessor {
+        <<transformer>>
+        +StandardScaler()
+        +MinMaxScaler()
+        +OneHotEncoder()
+        +SimpleImputer()
+        +fit_transform()
+    }
+    
+    class Estimator {
+        <<model>>
+        +fit()
+        +predict()
+        +score()
+    }
+    
+    class Classifier {
+        <<estimator>>
+        +predict_proba()
+        +KNeighborsClassifier()
+        +SVC()
+        +DecisionTreeClassifier()
+        +RandomForestClassifier()
+    }
+    
+    class Regressor {
+        <<estimator>>
+        +LinearRegression()
+        +Ridge()
+        +SVR()
+        +RandomForestRegressor()
+    }
+    
+    class Clusterer {
+        <<estimator>>
+        +KMeans()
+        +DBSCAN()
+        +AgglomerativeClustering()
+    }
+    
+    class ModelSelection {
+        <<utility>>
+        +cross_val_score()
+        +GridSearchCV()
+        +RandomizedSearchCV()
+        +learning_curve()
+    }
+    
+    class Metrics {
+        <<utility>>
+        +accuracy_score()
+        +precision_score()
+        +recall_score()
+        +f1_score()
+        +mean_squared_error()
+        +r2_score()
+        +silhouette_score()
+    }
+    
+    class Pipeline {
+        <<utility>>
+        +Pipeline([('pre', scaler), ('clf', model)])
+        +make_pipeline()
+        +fit()
+        +predict()
+    }
+    
+    Dataset --> Preprocessor : Prepare data
+    Preprocessor --> Estimator : Transform features
+    Estimator <|-- Classifier
+    Estimator <|-- Regressor
+    Estimator <|-- Clusterer
+    Estimator --> Metrics : Evaluate performance
+    ModelSelection --> Estimator : Tune and validate
+    Pipeline *-- Preprocessor : Chain steps
+    Pipeline *-- Estimator : Final estimator
+    
+    note for Beginner "Core Workflow:\n1. Load Dataset\n2. Preprocess Features\n3. Choose Estimator\n4. Train Model\n5. Evaluate\n6. Tune Hyperparameters"
+    note for Pipeline "Simplifies workflow:\nscaler = StandardScaler()\nclf = SVC()\npipe = Pipeline([('scale', scaler), ('svm', clf)])\npipe.fit(X_train, y_train)"
+```
+
+
+
 ```mermaid
 classDiagram
     Estimator <|-- SVC
     Estimator <|-- KNeighborsClassifier
     Estimator <|-- LinearModel
     LinearModel <|-- LinearRegression
-    LinearModel <|-- LogisticRegression
-    LinearModel <|-- PoissonRegression
     Estimator: +fit(samples, correct_values)
     Estimator: +predict(T)
     style Estimator fill:#f9f,stroke:#333,stroke-width:4px
@@ -201,20 +282,7 @@ classDiagram
         +fit(T)
         +predict(T)
     }
-    class LogisticRegression{
-        +coeff_
-        +intercept_
-        +init()
-        +fit(T)
-        +predict(T)
-    }
-    class PoissonRegression{
-        +coeff_
-        +intercept_
-        +init()
-        +fit(T)
-        +predict(T)
-    }
+
     
     Transformer: +fit()
     style Transformer fill:#f9f,stroke:#333,stroke-width:4px
@@ -224,7 +292,6 @@ classDiagram
     Transformer <|-- StandardScaler
     Transformer <|-- MinMaxScaler
     Transformer <|-- MaxAbsScaler
-    Transformer <|-- ModelSpec
     class StandardScaler{
         +fit(samples): calculate std and mean
         +transform(samples)
@@ -235,11 +302,6 @@ classDiagram
     }
     class MaxAbsScaler{
         +fit(samples): calculate std and mean
-        +transform(samples)
-    }
-    class ModelSPec{
-        +ILS_model
-        +fit(samples)
         +transform(samples)
     }
 
@@ -268,54 +330,90 @@ MSE: `np.mean((regr.predict(diabetes_X_test) - diabetes_y_test)**2)`
 R^2(score): `regr.score(diabetes_X_test, diabetes_y_test`
 
 ## model_selection
-
-### Cross Validation
-#### Train test split: validation set apprroach
 ```
 from sklearn.model_selection import train_test_split
 y_df = iris_df.target
 X_train, X_test, y_train, y_test = train_test_split(X_df, y_df, stratify=y_df, random_state=0)
-# random_state=0 to ensure we get the same result every time.
-
-# After training we get the MSE as
-np.mean((y_valid, valid_pred)^2)
 ```
 
-#### K-fold approach
+- `BaseCrossValidator`: Abstract base for deterministic splitters (e.g., KFold)
+- `BaseShuffleSplit`: Base for randomized splitters (e.g., ShuffleSplit)
+- `BaseSearchCV`: Base for hyperparameter tuners
+
+```mermaid
+classDiagram
+    class BaseCrossValidator {
+        <<abstract>>
+        +split(X, y, groups)
+    }
+    
+    BaseCrossValidator <|-- KFold
+    BaseCrossValidator <|-- StratifiedKFold
+    BaseCrossValidator <|-- TimeSeriesSplit
+    BaseCrossValidator <|-- GroupKFold
+    BaseCrossValidator <|-- LeaveOneOut
+
+    class KFold {
+        +n_splits: 5
+        +Shuffles data
+    }
+    class StratifiedKFold {
+        +Preserves class distribution
+    }
+    class TimeSeriesSplit {
+        +Order-sensitive splitting
+    }
+    class GroupKFold {
+        +Uses group labels
+    }
+    class LeaveOneOut {
+        +Each sample = test set once
+    }
 ```
-Import sklearn.model_selection.cross_validate
-
-cv_results = cross_validate(hp_model, # it takes the scikitlearn model (fit, predict, score)
-                            X,
-                            Y,
-                            cv=Auto.shape[0], # the amount of CVs=k, in this case LOOCV. This could also ve a KFold(n_splits=10, shuffle=True, random_state=0) object
-                            scoring=scoring, # scoring approach
-                            return_train_score=True)
-
-cv_err = np.mean(cv_results['test_score'])
+```mermaid
+classDiagram
+    class BaseShuffleSplit {
+        <<abstract>>
+        +split(X, y, groups)
+    }
+    BaseShuffleSplit <|-- ShuffleSplit
+    BaseShuffleSplit <|-- StratifiedShuffleSplit
+    BaseShuffleSplit <|-- GroupShuffleSplit
 ```
-This calculates for each iteration the score using a K-fold approach. It means it fits the model for all but one sample (in this case, one because, LOOCV), and calculates a score, and then moves on to repeat the process.
-As a result we get
-- fit_time array
-- score time array
-- test_score array
-
-We calculate the mean of the test score array of the LOOCV, as the test score in this case is simply the one the model has defined, which is MSE. So we want the mean of all MSEs.
-
+```mermaid
+classDiagram
+    class BaseSearchCV {
+        <<abstract>>
+        +fit(X, y)
+        +predict(X)
+        +best_params_
+        +best_score_
+    }
+    BaseSearchCV <|-- GridSearchCV
+    BaseSearchCV <|-- RandomizedSearchCV
+    ParameterGrid ..> GridSearchCV : Used by
+    ParameterSampler ..> RandomizedSearchCV : Used by
+    
+    class GridSearchCV {
+        +Exhaustive parameter search
+    }
+    class RandomizedSearchCV {
+        +Random parameter sampling
+    }
 ```
-validation = ShuffleSplit(n_splits=1,
-                          test_size=196,
-                          random_state=0)
-results = cross_validate(hp_model,
-                         Auto.drop(['mpg'], axis=1),
-                         Auto['mpg'],
-                         cv=validation);
-results['test_score']
+```mermaid
+classDiagram
+    class train_test_split {
+        <<function>>
+        +Single train/test split
+    }
+    class cross_val_score {
+        <<function>>
+        +Scores across folds
+    }
 ```
 
-### Bootstrap
-
-## Linear model
+### Linear model
 ```
 from sklearn import linear_model
 regr = linear_model.LinearRegression()
@@ -328,81 +426,263 @@ mse = metrics.mean_squared_error(y_train, y_pred)
 rmse = np.sqrt(mse)  # rse
 r2 = metrics.r2_score(y_train, y_pred) #r-squared metric
 adjusted_r2 = 1 - (1 - r2) * (n - 1) / (n - p - 1) #adjusted r-squared metric
-
-```
-### Classification
-#### Discriminant Analysis
-```
-from sklearn.discriminant_analysis import \
-     (LinearDiscriminantAnalysis as LDA,
-      QuadraticDiscriminantAnalysis as QDA)
-
-lda.means_, lda.priors_, lda.coeff_
-
 ```
 
-##### Decision Boundary
-```
-DecisionBoundaryDisplay.from_estimator(
-        lda,
-        X_train[['Lag1','Lag2']],
-        response_method="predict_proba",
-        plot_method="contour",
-        ax=ax,
-        alpha=1.0,
-        levels=[0.5]
-    )
+```mermaid
+classDiagram
+    direction BT
+    
+    class LinearModel {
+        <<abstract>>
+        +coef_
+        +intercept_
+        +fit(X, y)
+        +predict(X)
+    }
+    
+    class RegularizedLinearModel {
+        <<abstract>>
+        +alpha: Regularization strength
+    }
+    
+    class LinearRegression {
+        +OLS (Ordinary Least Squares)
+        +No regularization
+    }
+    
+    class Ridge {
+        +L2 regularization
+        +Good for multicollinearity
+    }
+    
+    class Lasso {
+        +L1 regularization
+        +Feature selection
+    }
+    
+    class ElasticNet {
+        +L1 + L2 regularization
+        +l1_ratio controls mix
+    }
+    
+    class BayesianRidge {
+        +Bayesian approach
+        +Automatic regularization
+    }
+    
+    class HuberRegressor {
+        +Robust to outliers
+        +Combines L2/L1 loss
+    }
+    
+    class SGDRegressor {
+        +Stochastic Gradient Descent
+        +Supports various losses
+    }
+    
+    class GLM {
+        <<abstract>>
+        +Generalized Linear Model
+    }
+    
+    class LogisticRegression {
+        +Classification (binary/multi)
+        +Logit loss
+    }
+    
+    class PoissonRegressor {
+        +Count data regression
+        +Log-link function
+    }
+    
+    class QuantileRegressor {
+        +Models quantiles (e.g., median)
+        +Robust to outliers
+    }
+    
+    class MultiOutputModel {
+        <<abstract>>
+        +Handles multiple targets
+    }
+    
+    LinearModel <|-- LinearRegression
+    LinearModel <|-- RegularizedLinearModel
+    RegularizedLinearModel <|-- Ridge
+    RegularizedLinearModel <|-- Lasso
+    RegularizedLinearModel <|-- ElasticNet
+    LinearModel <|-- BayesianRidge
+    LinearModel <|-- HuberRegressor
+    LinearModel <|-- SGDRegressor
+    LinearModel <|-- GLM
+    GLM <|-- LogisticRegression
+    GLM <|-- PoissonRegressor
+    GLM <|-- GammaRegressor
+    GLM <|-- TweedieRegressor
+    LinearModel <|-- QuantileRegressor
+    LinearModel <|-- MultiOutputModel
+    MultiOutputModel <|-- MultiTaskLasso
+    MultiOutputModel <|-- MultiTaskElasticNet
+    
+    class CVModel {
+        <<abstract>>
+        +Automated hyperparameter tuning
+    }
+    
+    Ridge <|-- RidgeCV
+    Lasso <|-- LassoCV
+    ElasticNet <|-- ElasticNetCV
+    LogisticRegression <|-- LogisticRegressionCV
+    Lars <|-- LarsCV
+    OrthogonalMatchingPursuit <|-- OrthogonalMatchingPursuitCV
+    class RidgeCV {
+        +Cross-validated alpha
+    }
+    class LassoCV {
+        +Cross-validated alpha
+    }
+    class Lars {
+        +Least Angle Regression
+    }
+    class OrthogonalMatchingPursuit {
+        +Greedy sparse approximation
+    }
 ```
 
-#### Naive Bayes
+- Basic linear modeling: LinearRegression
+- Feature selection: Lasso or LassoCV
+- Multicollinearity issues: Ridge or BayesianRidge
+- Classification tasks: LogisticRegression
+- Count data: PoissonRegressor
+- Outlier resistance: HuberRegressor or RANSACRegressor
+- Large datasets: SGDRegressor
+- Multi-output regression: MultiTaskElasticNet
+
+
+## metrics
+
+```mermaid
+classDiagram
+    direction BT
+    
+    class Metric {
+        <<abstract>>
+        +compute(y_true, y_pred)
+    }
+    
+    class ClassificationMetric {
+        <<interface>>
+    }
+    
+    class RegressionMetric {
+        <<interface>>
+    }
+    
+    class ClusteringMetric {
+        <<interface>>
+    }
+    
+    class PairwiseMetric {
+        <<interface>>
+    }
+    
+    Metric <|-- ClassificationMetric
+    Metric <|-- RegressionMetric
+    Metric <|-- ClusteringMetric
+    Metric <|-- PairwiseMetric
+    
+    class AccuracyScore {
+        +binary/multiclass
+        +params: normalize, sample_weight
+    }
+    
+    class PrecisionScore {
+        +params: average, zero_division
+        +micro/macro/weighted
+    }
+    
+    class RecallScore {
+        +params: average, zero_division
+        +related to sensitivity
+    }
+    
+    class F1Score {
+        +harmonic mean(precision, recall)
+        +params: average
+    }
+    
+    class RocAucScore {
+        +params: average, multi_class
+        +ovo/ovr strategies
+    }
+    
+    class ConfusionMatrix {
+        +visualize with ConfusionMatrixDisplay
+        +TP, TN, FP, FN counts
+    }
+    
+    class MeanSquaredError {
+        +params: squared, multioutput
+        +RMSE when squared=False
+    }
+    
+    class R2Score {
+        +coefficient of determination
+        +params: force_finite
+    }
+    
+    class AdjustedRandScore {
+        +clustering comparison
+        +adjusted for chance
+    }
+    
+    class SilhouetteScore {
+        +measures cluster cohesion
+        +range: [-1, 1]
+    }
+    
+    class CosineSimilarity {
+        +text/image applications
+        +params: dense_output
+    }
+    
+    class MakeScorer {
+        +wrapper for custom metrics
+        +params: greater_is_better
+    }
+    
+    ClassificationMetric <|.. AccuracyScore
+    ClassificationMetric <|.. PrecisionScore
+    ClassificationMetric <|.. RecallScore
+    ClassificationMetric <|.. F1Score
+    ClassificationMetric <|.. RocAucScore
+    ClassificationMetric <|.. ConfusionMatrix
+    RegressionMetric <|.. MeanSquaredError
+    RegressionMetric <|.. R2Score
+    ClusteringMetric <|.. AdjustedRandScore
+    ClusteringMetric <|.. SilhouetteScore
+    PairwiseMetric <|.. CosineSimilarity
+    Metric <|.. MakeScorer
 ```
-from sklearn.naive_bayes import GaussianNB
+
+```mermaid
+flowchart TD
+    A[Metric Types] --> B[Classification]
+    A --> C[Regression]
+    A --> D[Clustering]
+    A --> E[Pairwise]
+    A --> F[Utilities]
+    
+    B --> G[Accuracy, Precision, Recall, F1]
+    B --> H[ROC AUC, Confusion Matrix]
+    C --> I[MSE, MAE, R²]
+    D --> J[Adjusted Rand, Silhouette]
+    E --> K[Cosine Similarity]
+    F --> L[MakeScorer]
 ```
-This models each feature with a Gaussian distribution.
-
-After fitting, `NB.class_prior_` gives us the prior probability for each class.
-
-```
-NB.theta_
-# 2 rows: 2 classes
-# 2 columns: 2 features:
-# And so the mean of the first gaussian used on the total 
-# f_k(x) = f_k1(x) · f_k2(x)
-
-# same with variance
-NB.var_
-```
-
-
-#### Logistic Regression
-```
-from sklearn.linear_model import LogisticRegression
-logit = LogisticRegression(C=1e10, solver='liblinear')
-logit.fit(X_train, y_train)
-logit_pred = logit.predict_proba(X_test)
-
-
-```
-If the C value is high enough, it behaves as unregularized regression. Otherwise, it will automatically apply the Ridge regularization.
-We use `predict_proba` and not `predict` like for other estimators.
-
-#### Poisson Regression
-```
-M_pois = sm.GLM(Y, X2, family=sm.families.Poisson()).fit() # using sm.
-```
-
-#### KNN Classifier
-```
-from sklearn.neighbors import KNeighborsClassifier
-knn1 = KNeighborsClassifier(n_neighbors=1)
-
-```
-
 ## transformers
 ```
 from sklearn.preprocessing import StandardScaler
 my_std_scaler = StandardScaler()
----> scaler = StandardScaler(with_mean=True #substract mean, with_std=True #stddev to 1, copy=True)
 Xt = my_std_scaler.fit(X).transform(X)
 ```
 ```
@@ -491,29 +771,6 @@ results.conf_int(alpha=0.05)
 flowchart LR
      samples -- "OLS(samples,correct_values)" --> model -- "fit()"--> id1["intercept and t-values in results.params"]
 ```
-```
-# fitted values
-results.fittedvalues
-# Residuals
-results.resid
-```
-
-Leverage statistics: from the `hat_matrix_diag` obtained from `get_influence()`.
-```
-infl = results.get_influence()
-infl.hat_matrix_diag
-```
-
-VIF: Variance Inflation Factor
-```
-from statsmodels.stats.outliers_influence import variance_inflation_factor as VIF
-vals = [VIF(X, i)
-        for i in range(1, X.shape[1])]
-vif = pd.DataFrame({'vif':vals},
-                   index=X.columns[1:])
-vif
-```
-
 
 # ILS
 ```
@@ -534,30 +791,4 @@ design = MS(['lstat'])
 design = design.fit(Boston)
 X = design.transform(Boston)
 
-# As it is a transform, we can also call fit_transform.
-X = MS(['lstat', 'age']).fit_transform(Boston)
-```
-
-Interaction terms!
-```
-X = MS(['lstat',
-        'age',
-        ('lstat', 'age')]).fit_transform(Boston)
-```
-Polynomial fits
-```
-X = MS([poly('lstat', degree=2), 'age']).fit_transform(Boston)
-
-```
-
-
-### Goodness of fit
-```
-results.rsquared #R2
-np.sqrt(results.scale) # RSE
-```
-
-Anova
-```
-anova_lm(results1, results3)
 ```
