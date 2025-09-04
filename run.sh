@@ -6,6 +6,8 @@ docker run --rm  \
 	-v /media/fede/Data/repositorios/statistical_learning:/home/jovyan/work \
 	-v /media/fede/Data/repositorios/statistical_learning/.jupyter:/home/jovyan/.jupyter \
 	-p 8889:8888 \
+    -e GRANT_SUDO=yes \
+    --user root \
 	jupyter \
 	start-notebook.py --NotebookApp.token=${ACCESS_TOKEN}
 
